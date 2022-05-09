@@ -10,7 +10,6 @@ import requests
 import pickle, dill
 import pandas as pd
 import matplotlib.pyplot as plt
-import cv2
 import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler as mms
 import bz2file as bz2
@@ -19,11 +18,6 @@ def decompress_pickle(file):
     data = bz2.BZ2File(file, "rb")
     data = pickle.load(data)
     return data
-
-
-#path = 'C:/Users/Travail/Desktop/API/homecred.png'
-#picture = cv2.imread(path)
-#st.image(picture)
 
 st.title('Home Credit prediction App')
 
@@ -45,10 +39,7 @@ df_cols = df.columns
 clients_all = pd.DataFrame(clients_all)
 clients_all = clients_all.reset_index(drop=True)
 
-guide = pd.read_csv('HomeCredit_columns_description.csv',encoding='latin1')
-guide = guide.drop(['Unnamed: 0'], axis = 1)
-guide = guide.fillna('None')
-guide = guide[guide.Table == 'application_{train|test}.csv']
+guide = pickle.load(open('guide.pickle','rb'))
 
 
 cust_id = st.selectbox('Client IDs list', client_list)
