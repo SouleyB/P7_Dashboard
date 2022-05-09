@@ -21,9 +21,9 @@ def decompress_pickle(file):
     return data
 
 
-path = 'C:/Users/Travail/Desktop/API/homecred.png'
-picture = cv2.imread(path)
-st.image(picture)
+#path = 'C:/Users/Travail/Desktop/API/homecred.png'
+#picture = cv2.imread(path)
+#st.image(picture)
 
 st.title('Home Credit prediction App')
 
