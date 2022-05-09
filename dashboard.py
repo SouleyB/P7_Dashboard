@@ -24,7 +24,7 @@ def decompress_pickle(file):
 
 st.title('Home Credit prediction App')
 
-index = requests.get('https://homecred.herokuapp.com/login')
+index = requests.get('https://homecred.herokuapp.com/login', verify=False)
 index_page = index.text
 st.header(index_page)
 
@@ -55,7 +55,7 @@ st.subheader('Your predictions for client ID : '+ welcome)
 
 #prediction booth
 url_prediction = 'https://homecred.herokuapp.com/login/predict/' + str(cust_id)
-prediction = requests.get(url_prediction)
+prediction = requests.get(url_prediction, verify=False)
 result = prediction.text
 
 if float(result) >= 0.60:
