@@ -24,7 +24,7 @@ def decompress_pickle(file):
 
 st.title('Home Credit prediction App')
 
-index = requests.get('https://homecred.herokuapp.com/login', verify=False)
+index = requests.get('https://homecred.herokuapp.com/login', verify=False, timeout = 5)
 index_page = index.text
 st.header(index_page)
 
@@ -48,14 +48,14 @@ guide = pickle.load(open('guide.pickle','rb'))
 cust_id = st.selectbox('Client IDs list', client_list)
 
 #welcoming
-url = 'http://localhost:5000/login/' + str(cust_id)
+url = 'https://homecred.herokuapp.com/login/' + str(cust_id)
 cust_hub = requests.get(url)
 welcome = cust_hub.text
 st.subheader('Your predictions for client ID : '+ welcome)
 
 #prediction booth
 url_prediction = 'https://homecred.herokuapp.com/login/predict/' + str(cust_id)
-prediction = requests.get(url_prediction, verify=False)
+prediction = requests.get(url_prediction, verify=False, timeout = 5)
 result = prediction.text
 
 if float(result) >= 0.60:
