@@ -1,1 +1,1 @@
-web: gunicorn dashboard:app --preload
+web: sh setup.sh && streamlit run dashboard.py
