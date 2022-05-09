@@ -9,19 +9,23 @@ import streamlit as st
 import requests
 import pickle, dill
 import pandas as pd
+import cv2
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler as mms
 import bz2file as bz2
+
+img = cv2.imread('homecred.png')
 
 def decompress_pickle(file):
     data = bz2.BZ2File(file, "rb")
     data = pickle.load(data)
     return data
 
+st.image(img)
 st.title('Home Credit prediction App')
 
-index = requests.get('http://localhost:5000/login')
+index = requests.get('https://homecred.herokuapp.com/login')
 index_page = index.text
 st.header(index_page)
 
@@ -51,7 +55,7 @@ welcome = cust_hub.text
 st.subheader('Your predictions for client ID : '+ welcome)
 
 #prediction booth
-url_prediction = 'http://localhost:5000/login/predict/' + str(cust_id)
+url_prediction = 'https://homecred.herokuapp.com/login/predict/' + str(cust_id)
 prediction = requests.get(url_prediction)
 result = prediction.text
 
