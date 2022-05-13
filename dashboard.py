@@ -77,12 +77,12 @@ url_prediction = 'https://homecred.herokuapp.com/login/predict/' + str(cust_id)
 prediction = requests.get(url_prediction)
 result = prediction.text
 
-if float(result) >= 0.60:
+if float(result) <= 0.60:
     st.success('CREDIT GRANTED !')
 else:
     st.error('CREDIT DENIED !')
     
-st.header('Credit refund probability : ' + result)
+st.header('Customer bankrupt probability : ' + result)
 st.write('Delta with probability threshold p=(0.60) : ' + str(round(0.60-float(result),2)))
 
 #feature importance
